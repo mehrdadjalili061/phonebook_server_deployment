@@ -18,7 +18,7 @@ spec:
         - name: facegram-registery
       containers:
         - name: phonebook-api-server
-          image: ""
+          image: cr.fcgm.dev/facegram/phonebook-service:9fb71bfd
           ports:
             - containerPort: 8080
             - containerPort: 30015
