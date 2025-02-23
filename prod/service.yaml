@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: phonebook-api-service
+spec:
+  selector:
+    app: phonebook-api-server
+  ports:
+    - name: http-api
+      protocol: TCP
+      port: 31506
+      targetPort: 8080
+      nodePort: 31506
+    - name: grpc-client-port
+      protocol: TCP
+      port: 30015
+      targetPort: 30015
+      nodePort: 30015    
+  type: NodePort

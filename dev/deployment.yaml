@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: phonebook-api-server
+  labels:
+    app: phonebook-api-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: phonebook-api-server
+  template:
+    metadata:
+      labels:
+        app: phonebook-api-server
+    spec:
+      imagePullSecrets:
+        - name: facegram-registery
+      containers:
+        - name: phonebook-api-server
+          image: ""
+          ports:
+            - containerPort: 8080
+            - containerPort: 30015
+          env:
+            - name: NODE_ENV
+              value: "dev"   
+          envFrom:
+            - secretRef:
+                name: grpc-client-configs
+            - secretRef:
+                name: grpc-client-urls 
+            - secretRef:
+                name: sentry-credential
+            - secretRef:
+                name: arangodb-credential  
+            - secretRef:
+                name: rabbitmq-credential
+            - secretRef:
+                name: redis-credential 
+            - secretRef:
+                name: aes-keys                                                                     
